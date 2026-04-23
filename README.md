@@ -24,6 +24,7 @@ Applikationen simulerer en web-service som:
   - 🔴 **ERROR**: Høj CPU (>80%)
   - 🔴 **CRITICAL**: Kritisk CPU (>95%)
 - **JSON Logging** - Alle events logges også i JSON format til `stdout`
+- **JSONL Fil Logging** - Alle events gemmes også i `logs.jsonl` (én JSON pr. linje)
 - **Login System** - Tester login-systemet med både validering af admin og gæst-brugere
 - **Task Timing** - Måler hvor lang tid hver task tager at gennemføre
 - **Håndterer fejl** og logger dem for fejlfinding
@@ -34,6 +35,13 @@ Applikationen simulerer en web-service som:
 ```python
 log_json("INFO", "System started")
 log_json("ERROR", "High CPU", {"cpu": 85})
+```
+
+**`write_log(level, message, extra=None)`** - Gemmer beskeder i `logs.jsonl`
+```python
+write_log("INFO", "System started")
+write_log("WARNING", "CPU is high", {"cpu": 87})
+write_log("ERROR", "Something failed")
 ```
 
 **`login(user)`** - Logger login-forsøg med forskellige advarsler
@@ -74,12 +82,20 @@ tail -f app.log
 
 JSON logs udskrives på konsollen (stdout) i realtid når programmet kører
 
+### Se JSONL fil logs
+
+JSONL logs gemmes i `logs.jsonl`:
+```bash
+tail -f logs.jsonl
+```
+
 ## 📁 Projektstruktur
 
 ```
 Sofwaresikkerhed/
 ├── app.py              # Hovedapplikation
 ├── app.log             # Logfil (genereres ved kørsel)
+├── logs.jsonl          # JSONL logfil (genereres ved kørsel)
 ├── logging_project/    # Projektmappe
 └── README.md           # Denne fil
 ```
@@ -107,6 +123,13 @@ Applikationen eksponerer følgende metrics:
 {"time": "Wed Apr 23 14:32:45 2026", "level": "INFO", "message": "System started", "extra": null}
 {"time": "Wed Apr 23 14:32:46 2026", "level": "INFO", "message": "Admin login successful", "extra": {"user": "admin"}}
 {"time": "Wed Apr 23 14:32:46 2026", "level": "WARNING", "message": "Failed login attempt", "extra": {"user": "guest"}}
+```
+
+**JSONL Output (logs.jsonl):**
+```json
+{"time":"Thu Apr 23 11:31:26","level":"INFO","message":"System started","extra":null}
+{"time":"Thu Apr 23 11:31:38","level":"WARNING","message":"CPU is high","extra":{"cpu":87}}
+{"time":"Thu Apr 23 11:31:39","level":"ERROR","message":"Something failed","extra":null}
 ```
 
 ## 🛑 Stop applikationen
