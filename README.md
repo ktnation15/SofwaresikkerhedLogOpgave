@@ -55,7 +55,7 @@ login("guest")    # WARNING log for fejlet attempt
 ### Installér afhængigheder
 
 ```bash
-pip install prometheus-client
+pip install -r requirements.txt
 ```
 
 ### Kør applikationen
@@ -135,6 +135,13 @@ Applikationen eksponerer følgende metrics:
 ## 🛑 Stop applikationen
 
 Tryk `Ctrl+C` for at stoppe programmet.
+
+## ✅ Klar til aflevering
+
+- Repository er på GitHub
+- `README.md` forklarer opsætning og brug
+- `requirements.txt` indeholder dependencies
+- Logfiler (`app.log`, `logs.jsonl`) bliver ikke versioneret
 
 ---
 
