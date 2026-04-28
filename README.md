@@ -1,7 +1,13 @@
 # Softwaresikkerhed - Logging & Monitoring Opgave
 
 En Python-applikation der demonstrerer **logging** og **Prometheus metrics** til monitoring og overvågning af systemaktivitet.
-
+Visualization:
+<img width="1440" height="1240" alt="image" src="https://github.com/user-attachments/assets/06071a3a-1b89-4a33-a99d-ca8d0cf2d9aa" />
+Her er systemdiagrammet — klik på en komponent for at dykke dybere ned i den.
+Diagrammet viser tre lag:
+Inputkilder (venstre) — CPU-simulatoren, login-systemet og task timing sender data ind i applikationen.
+Logger engine (midten) — app.py tager imod data og videresender dem til logger-motoren, som håndterer log_json(), write_log() og login(). CPU-tærskelkassen viser hvilke log-niveauer der udløses ved hvilke CPU-procenter.
+Output (højre + bund) — logdata ender tre steder: app.log (tekstfil), stdout (JSON i realtid) og logs.jsonl (én JSON-post pr. linje). Prometheus-metrics eksponeres separat på port 8000 med de to metrics app_requests_total og fake_cpu_usage_percent.
 ## Formål
 
 Projektet viser hvordan man:
