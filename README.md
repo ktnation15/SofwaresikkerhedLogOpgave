@@ -2,7 +2,7 @@
 
 En Python-applikation der demonstrerer **logging** og **Prometheus metrics** til monitoring og overvågning af systemaktivitet.
 
-## 🎯 Formål
+## Formål
 
 Projektet viser hvordan man:
 - Logger aktivitet på forskellige niveauer (INFO, WARNING, ERROR, CRITICAL)
@@ -13,23 +13,23 @@ Projektet viser hvordan man:
 - Håndterer fejl og kritiske situationer
 - Monitorer ressourceforbrug (CPU) med multiple advarselniveauer
 
-## 📋 Funktionalitet
+## Funktionalitet
 
 Applikationen simulerer en web-service som:
 - **Tæller requests** med en Prometheus Counter
 - **Overvåger CPU-forbrug** med en Prometheus Gauge (10-90%)
 - **Logger aktivitet** til `app.log` baseret på CPU-niveau:
-  - ✅ **INFO**: Normal aktivitet
-  - ⚠️ **WARNING**: CPU over 70%
-  - 🔴 **ERROR**: Høj CPU (>80%)
-  - 🔴 **CRITICAL**: Kritisk CPU (>95%)
+  -  **INFO**: Normal aktivitet
+  -  **WARNING**: CPU over 70%
+  -  **ERROR**: Høj CPU (>80%)
+  -  **CRITICAL**: Kritisk CPU (>95%)
 - **JSON Logging** - Alle events logges også i JSON format til `stdout`
 - **JSONL Fil Logging** - Alle events gemmes også i `logs.jsonl` (én JSON pr. linje)
 - **Login System** - Tester login-systemet med både validering af admin og gæst-brugere
 - **Task Timing** - Måler hvor lang tid hver task tager at gennemføre
 - **Håndterer fejl** og logger dem for fejlfinding
 
-### 🔑 Nye Funktioner
+### Nye Funktioner
 
 **`log_json(level, message, extra=None)`** - Logger beskeder i JSON format
 ```python
@@ -50,9 +50,9 @@ login("admin")    # INFO log
 login("guest")    # WARNING log for fejlet attempt
 ```
 
-## 🚀 Start
+## Start
 
-### Installér afhængigheder
+### Installér dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -89,7 +89,7 @@ JSONL logs gemmes i `logs.jsonl`:
 tail -f logs.jsonl
 ```
 
-## 📁 Projektstruktur
+## Projektstruktur
 
 ```
 Sofwaresikkerhed/
@@ -100,14 +100,14 @@ Sofwaresikkerhed/
 └── README.md           # Denne fil
 ```
 
-## 📊 Prometheus Metrics
+## Prometheus Metrics
 
 Applikationen eksponerer følgende metrics:
 
 - `app_requests_total` - Antal requests behandlet (Counter)
 - `fake_cpu_usage_percent` - Simuleret CPU-forbrug (Gauge)
 
-## 📈 Output Eksempler
+## Output Eksempler
 
 **Normal Log (app.log):**
 ```
@@ -132,11 +132,11 @@ Applikationen eksponerer følgende metrics:
 {"time":"Thu Apr 23 11:31:39","level":"ERROR","message":"Something failed","extra":null}
 ```
 
-## 🛑 Stop applikationen
+## Stop applikationen
 
 Tryk `Ctrl+C` for at stoppe programmet.
 
-## ✅ Klar til aflevering
+## Klar til aflevering
 
 - Repository er på GitHub
 - `README.md` forklarer opsætning og brug
